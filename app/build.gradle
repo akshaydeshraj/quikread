@@ -1,20 +1,73 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+def versionMajor = 0
+def versionMinor = 5
+def versionPatch = 1
+def versionBuild = 0
+
+def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+def date = new Date()
+def buildTime = date.format("dd.MM.yy", TimeZone.getTimeZone("IST"))
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+    }
+}
 
 android {
+
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(
+                    output.outputFile.parent,
+                    output.outputFile.name.replace(".apk", "-${variant.versionName}.apk"))
+        }
+    }
+
     defaultConfig {
+
         applicationId "com.katana.quikread"
+
         minSdkVersion 8
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
+        buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
+        buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
+
     }
+
+    signingConfigs {
+
+        debugConfig{
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('debug.keystore')
+            storePassword 'android'
+        }
+    }
+
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug{
+            applicationIdSuffix '.dev'
+            versionNameSuffix '-dev'
+            signingConfig signingConfigs.debugConfig
         }
     }
 }
@@ -24,4 +77,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
+}
+
+// print build finish time
+gradle.buildFinished { buildResult ->
+    def buildFinishDate = new Date()
+    def formattedDate = buildFinishDate.format('yyyy-MM-dd HH:mm:ss')
+    println "Build finished: ${formattedDate}"
 }
