@@ -44,7 +44,7 @@ public class ApiModule {
     @Provides
     @Named("Goodreads")
     public Endpoint provideGoodreadsEndpoint(){
-        return Endpoints.newFixedEndpoint("");
+        return Endpoints.newFixedEndpoint("https://www.goodreads.com");
     }
 
     @Provides
