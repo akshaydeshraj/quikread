@@ -1,6 +1,7 @@
 package com.katana.quikread.rest.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.katana.quikread.models.QuikrItem;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class BooksByLocationResponse {
     int responseCode;
 
     @SerializedName("docs")
-    List<Object> quikritems;
+    List<QuikrItem> quikritems;
 
     public boolean isSuccess() {
         return success;
@@ -38,7 +39,4 @@ public class BooksByLocationResponse {
         return responseCode;
     }
 
-    public List<Object> getQuikritems() {
-        return quikritems;
-    }
 }

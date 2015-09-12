@@ -31,7 +31,7 @@ public class DatabaseManager {
         mDatabase = mBooksDbHelper.getWritableDatabase();
     }
 
-    public void addBookItem(QuikrItem model){
+    public void addBookItem(QuikrItem<String> model){
 
         ContentValues values = new ContentValues();
         values.put(allColumns[1],model.getAttributeAdType());

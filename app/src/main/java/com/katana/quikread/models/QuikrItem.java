@@ -1,36 +1,40 @@
 package com.katana.quikread.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * @author Akshay
  * @version 1.0.0
  * @since 12-Sep-15
  */
-public class QuikrItem {
+public class QuikrItem<T> {
 
-    private int primaryKey;
+    private transient int primaryKey;
 
+    @SerializedName("attribute_Ad_Type")
     private String attributeAdType;
 
     private String cityName;
 
     private String metaCategoryName;
 
+    @SerializedName("ad_locality")
     private String adLocality;
 
     private String content;
 
-    private String images;
+    private T images;
 
     private String id;
 
     private String title;
 
+    @SerializedName("attribute_Genre")
     private String attributeGenre;
 
     private String url;
 
     private String geoPin; //TODO : maybe show on map
-
 
     public int getPrimaryKey() {
         return primaryKey;
@@ -80,11 +84,11 @@ public class QuikrItem {
         this.content = content;
     }
 
-    public String getImages() {
+    public T getImages() {
         return images;
     }
 
-    public void setImages(String images) {
+    public void setImages(T images) {
         this.images = images;
     }
 

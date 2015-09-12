@@ -84,6 +84,6 @@ public class RestDataSource {
 
     public void fetchBooksByLocation(String cityName){
 
-        quikrService.getBooksByLocation("52", "200", "Delhi", retrofitCallback);
+        quikrService.getBooksByLocation("52", "2", "Delhi", retrofitCallback);
     }
 }
