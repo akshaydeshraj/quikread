@@ -31,18 +31,18 @@ public class DataBaseManager {
         mDatabase = mBooksDbHelper.getWritableDatabase();
     }
 
-    public void addBookItem(QuikrItem<String> model){
+    public void addBookItem(QuikrItem model){
 
         ContentValues values = new ContentValues();
         values.put(allColumns[1],model.getAttributeAdType());
         values.put(allColumns[2], model.getCityName());
         values.put(allColumns[3], model.getMetaCategoryName());
-        values.put(allColumns[4], model.getAdLocality());
+     //   values.put(allColumns[4], model.getAdLocality());
         values.put(allColumns[5], model.getContent());
-        values.put(allColumns[6], model.getImages());
+//        values.put(allColumns[6], model.getImages());
         values.put(allColumns[7], model.getId());
         values.put(allColumns[8], model.getTitle());
-        values.put(allColumns[9], model.getAttributeGenre());
+//        values.put(allColumns[9], model.getAttributeGenre());
         values.put(allColumns[10], model.getUrl());
         values.put(allColumns[11], model.getGeoPin());
 
@@ -67,12 +67,12 @@ public class DataBaseManager {
                 model.setAttributeAdType(cursor.getString(1));
                 model.setCityName(cursor.getString(2));
                 model.setMetaCategoryName(cursor.getString(3));
-                model.setAdLocality(cursor.getString(4));
+//                model.setAdLocality(cursor.getString(4));
                 model.setContent(cursor.getString(5));
-                model.setImages(cursor.getString(6));
+//                model.setImages(cursor.getString(6));
                 model.setId(cursor.getString(7));
                 model.setTitle(cursor.getString(8));
-                model.setAttributeGenre(cursor.getString(9));
+//                model.setAttributeGenre(cursor.getString(9));
                 model.setUrl(cursor.getString(10));
                 model.setGeoPin(cursor.getString(11));
                 notificationsModels.add(model);

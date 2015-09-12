@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import dagger.Component;
+import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -56,10 +57,22 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
 
         restDataSource.setOnRequestFinishedListener(this);
 
+
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),10));
 
-        //restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
-        restDataSource.searchBookByTitle("Hardy Boys");
+        restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
+        restDataSource.searchBookByTitle("", new Callback() {
+            @Override
+            public void success(Object o, Response response) {
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
+
     }
 
     @Override

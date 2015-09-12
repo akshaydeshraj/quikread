@@ -22,6 +22,7 @@ public interface QuikrService {
         @Query("categoryId") String categoryId,
         @Query("size") String size,
         @Query("city") String city,
+        @Query("from") String from,
         Callback<BooksByLocationResponse> callback
     );
 }

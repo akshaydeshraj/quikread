@@ -94,11 +94,11 @@ public class RestDataSource {
 
     public void fetchBooksByLocation(String cityName){
 
-        quikrService.getBooksByLocation("52", "2", "Delhi", retrofitCallback);
+        quikrService.getBooksByLocation("52", "1000", "Delhi", "0",retrofitCallback);
     }
 
-    public void searchBookByTitle(String title){
+    public void searchBookByTitle(String title, Callback callback){
 
-        goodreadsService.searchBookByTitle(title, retrofitCallback);
+        goodreadsService.searchBookByTitle(title, callback);
     }
 }

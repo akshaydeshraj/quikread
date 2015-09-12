@@ -1,5 +1,6 @@
 package com.katana.quikread.models;
 
+import com.google.gson.JsonElement;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -7,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * @version 1.0.0
  * @since 12-Sep-15
  */
-public class QuikrItem<T> {
+public class QuikrItem {
 
     private transient int primaryKey;
 
@@ -19,18 +20,18 @@ public class QuikrItem<T> {
     private String metaCategoryName;
 
     @SerializedName("ad_locality")
-    private String adLocality;
+    private JsonElement adLocality;
 
     private String content;
 
-    private T images;
+    private JsonElement images;
 
     private String id;
 
     private String title;
 
     @SerializedName("attribute_Genre")
-    private String attributeGenre;
+    private JsonElement attributeGenre;
 
     private String url;
 
@@ -68,11 +69,11 @@ public class QuikrItem<T> {
         this.metaCategoryName = metaCategoryName;
     }
 
-    public String getAdLocality() {
+    public JsonElement getAdLocality() {
         return adLocality;
     }
 
-    public void setAdLocality(String adLocality) {
+    public void setAdLocality(JsonElement adLocality) {
         this.adLocality = adLocality;
     }
 
@@ -84,11 +85,11 @@ public class QuikrItem<T> {
         this.content = content;
     }
 
-    public T getImages() {
+    public JsonElement getImages() {
         return images;
     }
 
-    public void setImages(T images) {
+    public void setImages(JsonElement images) {
         this.images = images;
     }
 
@@ -108,11 +109,11 @@ public class QuikrItem<T> {
         this.title = title;
     }
 
-    public String getAttributeGenre() {
+    public JsonElement getAttributeGenre() {
         return attributeGenre;
     }
 
-    public void setAttributeGenre(String attributeGenre) {
+    public void setAttributeGenre(JsonElement attributeGenre) {
         this.attributeGenre = attributeGenre;
     }
 
