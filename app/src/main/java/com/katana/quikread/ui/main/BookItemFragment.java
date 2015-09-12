@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.katana.quikread.R;
+import com.katana.quikread.models.QuikreadItem;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -37,10 +39,12 @@ public class BookItemFragment extends Fragment{
     @Bind(R.id.item_fab)
     FloatingActionButton fab;
 
-    int position;
+    QuikreadItem quikreadItem;
 
-    public static Fragment newInstance(Bundle args){
+    public static Fragment newInstance(QuikreadItem quikreadItem){
 
+        Bundle args = new Bundle();//TODO : fill this bundle
+        args.putSerializable("quikreadItem", quikreadItem);
         BookItemFragment bookItemFragment = new BookItemFragment();
         bookItemFragment.setArguments(args);
 
@@ -51,7 +55,7 @@ public class BookItemFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments()!=null){
-            position = getArguments().getInt("position");
+            quikreadItem = (QuikreadItem)getArguments().getSerializable("quikreadItem");
         }
     }
 
@@ -65,8 +69,5 @@ public class BookItemFragment extends Fragment{
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
-
-        textView.setText(""+position);
     }
 }

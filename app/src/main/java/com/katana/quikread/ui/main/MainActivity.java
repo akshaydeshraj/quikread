@@ -2,7 +2,6 @@ package com.katana.quikread.ui.main;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +47,7 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
     @Inject
     RestDataSource restDataSource;
 
+    ViewPagerAdapter viewPagerAdapter;
     ArrayList<QuikreadItem> quikreadItemArrayList = new ArrayList<>();
 
     private int count = 0;
@@ -61,9 +61,9 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
 
         restDataSource.setOnRequestFinishedListener(this);
 
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), 30));
-        viewPager.setPageTransformer(false,new DepthPageTransformer());
+        viewPager.setPageTransformer(false, new DepthPageTransformer());
 
         restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
 
@@ -112,14 +112,29 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
 
             quikreadItemArrayList.clear();
 
-            for(QuikrItem quikrItem : booksByLocationResponse.getQuikritems()){
+            for(final QuikrItem quikrItem : booksByLocationResponse.getQuikritems()){
 
                 restDataSource.searchBookByTitle(quikrItem.getTitle(), new Callback() {
                     @Override
                     public void success(Object o, Response response) {
-                        Log.i(TAG, ((BookSearchResponse) o).getBook().getTitle());
 
-                        QuikreadItem  quikreadItem = new QuikreadItem();
+                        BookSearchResponse bookSearchResponse = (BookSearchResponse)o;
+
+                        try{
+                            Log.i(TAG, bookSearchResponse.getBook().getAuthors().getAuthor().getName());
+                        }catch (NullPointerException e){
+                            e.printStackTrace();
+                        }
+
+                        QuikreadItem  quikreadItem = new QuikreadItem(
+                                quikrItem.getAttributeGenre().getAsString(),
+                                quikrItem.getPrice(),
+                                bookSearchResponse.getBook().getTitle(),
+                                bookSearchResponse.getBook().getImageUrl(),
+                                bookSearchResponse.getBook().getDescription(),
+                                bookSearchResponse.getBook().getAuthors().getAuthor().getName(),
+                                bookSearchResponse.getBook().getAverageRating()
+                        );
                         quikreadItemArrayList.add(quikreadItem);
                         count++;
 
@@ -152,6 +167,11 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
     public void requestCompleted(){
         Log.v(TAG, "Request Completed");
 
+        for (QuikreadItem quikreadItem : quikreadItemArrayList){
+            viewPagerAdapter.addFragment(BookItemFragment.newInstance(quikreadItem));
+        }
+
         //TODO : notifyDataSetChanged here
+        viewPager.setAdapter(viewPagerAdapter);
     }
 }

@@ -1,9 +1,11 @@
 package com.katana.quikread.ui.main;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author DEEPANKAR
@@ -12,23 +14,24 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter{
 
-    int numberOfItems;
+    private final List<Fragment> fragments = new ArrayList<>();
 
-    public ViewPagerAdapter(FragmentManager fm ,int items) {
+    public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
-        this.numberOfItems = items;
+    }
+
+    public void addFragment(Fragment fragment){
+        fragments.add(fragment);
     }
 
     @Override
     public Fragment getItem(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("position",position); // TODO: defining keys properly
 
-        return BookItemFragment.newInstance(bundle);
+        return fragments.get(position);
     }
 
     @Override
     public int getCount() {
-        return numberOfItems;
+        return fragments.size();
     }
 }
