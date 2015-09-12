@@ -11,4 +11,7 @@ public class SampleKeys {
     public static final String QUIKR_APP_ID = "";
     public static final String QUIKR_TOKEN_ID = "";
     public static final String QUIKR_BOOKS_LOCATION_SIGNATURE = "";
+
+    //Goodreads
+    public static final String GOODREADS_API_KEY = "";
 }

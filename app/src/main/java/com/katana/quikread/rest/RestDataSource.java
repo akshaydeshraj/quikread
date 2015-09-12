@@ -17,6 +17,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Client;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
+import retrofit.converter.SimpleXMLConverter;
 
 /**
  * @author Akshay
@@ -57,10 +58,19 @@ public class RestDataSource {
 
         quikrService = quikrAdapter.create(QuikrService.class);
 
+        RequestInterceptor goodreadsInterceptor = new RequestInterceptor() {
+            @Override
+            public void intercept(RequestFacade request) {
+                request.addQueryParam("key", Keys.GOODREADS_API_KEY);
+            }
+        };
+
         RestAdapter goodreadsAdapter = new RestAdapter.Builder()
-                .setEndpoint(quikrEndpoint)
+                .setEndpoint(goodreadsEndpoint)
                 .setClient(client)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setConverter(new SimpleXMLConverter())
+                .setRequestInterceptor(goodreadsInterceptor)
                 .build();
 
         goodreadsService = goodreadsAdapter.create(GoodreadsService.class);
@@ -85,5 +95,10 @@ public class RestDataSource {
     public void fetchBooksByLocation(String cityName){
 
         quikrService.getBooksByLocation("52", "2", "Delhi", retrofitCallback);
+    }
+
+    public void searchBookByTitle(String title){
+
+        goodreadsService.searchBookByTitle(title, retrofitCallback);
     }
 }

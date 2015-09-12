@@ -13,6 +13,7 @@ import com.katana.quikread.common.BaseActivity;
 import com.katana.quikread.components.AppComponent;
 import com.katana.quikread.rest.OnRequestFinishedListener;
 import com.katana.quikread.rest.RestDataSource;
+import com.katana.quikread.rest.models.BookSearchResponse;
 import com.katana.quikread.rest.models.BooksByLocationResponse;
 
 import javax.inject.Inject;
@@ -55,7 +56,8 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
 
         restDataSource.setOnRequestFinishedListener(this);
 
-        restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
+        //restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
+        restDataSource.searchBookByTitle("Hardy Boys");
     }
 
     @Override
@@ -96,6 +98,11 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
 
         if(response instanceof BooksByLocationResponse){
             Log.i(TAG, String.valueOf(((BooksByLocationResponse)response).getTotal()));
+        }
+
+        if(response instanceof BookSearchResponse){
+
+            Log.i(TAG, ((BookSearchResponse)response).getRequest().getKey());
         }
     }
 
