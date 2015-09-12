@@ -31,5 +31,5 @@ proguard/
 *.iws
 .idea/
 
-# API Endpoints
-Endpoints.java
+# API Keys
+Keys.java
