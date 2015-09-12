@@ -38,7 +38,7 @@ public class ApiModule {
     @Provides
     @Named("Quikr")
     public Endpoint provideQuikrEndpoint(){
-        return Endpoints.newFixedEndpoint("");
+        return Endpoints.newFixedEndpoint("https://api.quikr.com");
     }
 
     @Provides
