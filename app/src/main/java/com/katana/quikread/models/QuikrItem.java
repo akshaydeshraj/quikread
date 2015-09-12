@@ -33,6 +33,9 @@ public class QuikrItem {
     @SerializedName("attribute_Genre")
     private JsonElement attributeGenre;
 
+    @SerializedName("attribute_Price")
+    private String price;
+
     private String url;
 
     private String geoPin; //TODO : maybe show on map
@@ -51,6 +54,10 @@ public class QuikrItem {
 
     public void setAttributeAdType(String attributeAdType) {
         this.attributeAdType = attributeAdType;
+    }
+
+    public String getPrice() {
+        return price;
     }
 
     public String getCityName() {
