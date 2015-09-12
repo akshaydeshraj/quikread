@@ -34,9 +34,6 @@ public class BookItemFragment extends Fragment{
     @Bind(R.id.item_image)
     ImageView bookImageView;
 
-    @Bind(R.id.item_fab)
-    FloatingActionButton fab;
-
     int position;
 
     public static Fragment newInstance(Bundle args){
