@@ -11,6 +11,7 @@ import com.katana.quikread.ActivityScope;
 import com.katana.quikread.R;
 import com.katana.quikread.common.BaseActivity;
 import com.katana.quikread.components.AppComponent;
+import com.katana.quikread.models.QuikrItem;
 import com.katana.quikread.rest.OnRequestFinishedListener;
 import com.katana.quikread.rest.RestDataSource;
 import com.katana.quikread.rest.models.BookSearchResponse;
@@ -46,6 +47,9 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
     @Inject
     RestDataSource restDataSource;
 
+    int plusCount = 0;
+    int negativeCount = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,21 +61,9 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
 
         restDataSource.setOnRequestFinishedListener(this);
 
-
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),10));
 
         restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
-        restDataSource.searchBookByTitle("", new Callback() {
-            @Override
-            public void success(Object o, Response response) {
-
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-            }
-        });
 
     }
 
@@ -113,12 +105,29 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
 
         if(response instanceof BooksByLocationResponse){
             Log.i(TAG, String.valueOf(((BooksByLocationResponse)response).getTotal()));
+
+            BooksByLocationResponse booksByLocationResponse = (BooksByLocationResponse)response;
+
+            for(QuikrItem quikrItem : booksByLocationResponse.getQuikritems()){
+
+                restDataSource.searchBookByTitle(quikrItem.getTitle(), new Callback() {
+                    @Override
+                    public void success(Object o, Response response) {
+                        plusCount++;
+                        Log.i(TAG, ((BookSearchResponse) o).getBook().getTitle());
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        negativeCount++;
+                        Log.e(TAG, error.getLocalizedMessage());
+                    }
+                });
+            }
+
         }
 
-        if(response instanceof BookSearchResponse){
 
-            Log.i(TAG, ((BookSearchResponse)response).getRequest().getKey());
-        }
     }
 
     @Override
