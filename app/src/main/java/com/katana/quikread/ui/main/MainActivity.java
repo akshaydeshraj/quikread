@@ -1,7 +1,7 @@
 package com.katana.quikread.ui.main;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -39,8 +39,8 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.fab)
-    FloatingActionButton fab;
+    @Bind(R.id.main_viewpager)
+    ViewPager viewPager;
 
     @Inject
     RestDataSource restDataSource;
@@ -48,13 +48,15 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.book_content_main);
 
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
 
         restDataSource.setOnRequestFinishedListener(this);
+
+        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),10));
 
         //restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
         restDataSource.searchBookByTitle("Hardy Boys");
