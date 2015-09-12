@@ -68,7 +68,7 @@ public class RestDataSource {
         RestAdapter goodreadsAdapter = new RestAdapter.Builder()
                 .setEndpoint(goodreadsEndpoint)
                 .setClient(client)
-                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setLogLevel(RestAdapter.LogLevel.NONE)
                 .setConverter(new SimpleXMLConverter())
                 .setRequestInterceptor(goodreadsInterceptor)
                 .build();
@@ -94,7 +94,7 @@ public class RestDataSource {
 
     public void fetchBooksByLocation(String cityName){
 
-        quikrService.getBooksByLocation("52", "1000", "Delhi", "0",retrofitCallback);
+        quikrService.getBooksByLocation("52", "1000", cityName, "0",retrofitCallback);
     }
 
     public void searchBookByTitle(String title, Callback callback){

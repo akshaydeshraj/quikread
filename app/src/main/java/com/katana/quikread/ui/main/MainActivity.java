@@ -62,7 +62,6 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
         restDataSource.setOnRequestFinishedListener(this);
 
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),10));
-
         restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
 
     }
@@ -113,13 +112,11 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
                 restDataSource.searchBookByTitle(quikrItem.getTitle(), new Callback() {
                     @Override
                     public void success(Object o, Response response) {
-                        plusCount++;
                         Log.i(TAG, ((BookSearchResponse) o).getBook().getTitle());
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        negativeCount++;
                         Log.e(TAG, error.getLocalizedMessage());
                     }
                 });
