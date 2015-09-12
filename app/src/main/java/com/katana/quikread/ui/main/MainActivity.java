@@ -126,8 +126,16 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
                             e.printStackTrace();
                         }
 
+                        String genre;
+
+                        try{
+                            genre = quikrItem.getAttributeGenre().getAsString();
+                        }catch (Exception e){
+                            genre= "";
+                        }
+
                         QuikreadItem  quikreadItem = new QuikreadItem(
-                                quikrItem.getAttributeGenre().getAsString(),
+                                genre,
                                 quikrItem.getPrice(),
                                 bookSearchResponse.getBook().getTitle(),
                                 bookSearchResponse.getBook().getImageUrl(),
