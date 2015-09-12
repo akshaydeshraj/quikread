@@ -12,7 +12,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class DatabaseManager {
+public class DataBaseManager {
 
     private SQLiteDatabase mDatabase;
     private BooksDbHelper mBooksDbHelper;
@@ -20,7 +20,7 @@ public class DatabaseManager {
     private String tableName;
 
     @Inject
-    public DatabaseManager(BooksDbHelper dataBase){
+    public DataBaseManager(BooksDbHelper dataBase){
         mBooksDbHelper = dataBase;
         tableName = mBooksDbHelper.getTableName();
         allColumns = mBooksDbHelper.getTableColumns();
