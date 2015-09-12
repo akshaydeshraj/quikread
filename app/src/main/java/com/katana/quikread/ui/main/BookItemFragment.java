@@ -6,8 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.katana.quikread.R;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * @author DEEPANKAR
@@ -15,6 +18,10 @@ import com.katana.quikread.R;
  */
 public class BookItemFragment extends Fragment{
 
+    @Bind(R.id.textView)
+    TextView textView;
+
+    int position;
 
     public static Fragment newInstance(Bundle args){
 
@@ -28,7 +35,7 @@ public class BookItemFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments()!=null){
-            // TODO: retrieve the data
+            position = getArguments().getInt("position");
         }
     }
 
@@ -41,5 +48,8 @@ public class BookItemFragment extends Fragment{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this,view);
+
+        textView.setText(""+position);
     }
 }
