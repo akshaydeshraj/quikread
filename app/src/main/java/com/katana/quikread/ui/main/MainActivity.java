@@ -17,6 +17,7 @@ import com.katana.quikread.rest.OnRequestFinishedListener;
 import com.katana.quikread.rest.RestDataSource;
 import com.katana.quikread.rest.models.BookSearchResponse;
 import com.katana.quikread.rest.models.BooksByLocationResponse;
+import com.katana.quikread.ui.utils.DepthPageTransformer;
 
 import java.util.ArrayList;
 
@@ -41,9 +42,6 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
         void inject(MainActivity activity);
     }
 
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-
     @Bind(R.id.main_viewpager)
     ViewPager viewPager;
 
@@ -61,11 +59,12 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
 
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
-
         restDataSource.setOnRequestFinishedListener(this);
 
-        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),10));
+
+        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), 30));
+        viewPager.setPageTransformer(false,new DepthPageTransformer());
+
         restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
 
     }

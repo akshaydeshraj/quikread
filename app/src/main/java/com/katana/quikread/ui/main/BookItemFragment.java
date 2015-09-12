@@ -2,10 +2,14 @@ package com.katana.quikread.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.katana.quikread.R;
@@ -20,6 +24,18 @@ public class BookItemFragment extends Fragment{
 
     @Bind(R.id.textView)
     TextView textView;
+
+    @Bind(R.id.item_collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+
+    @Bind(R.id.item_toolbar)
+    Toolbar toolbar;
+
+    @Bind(R.id.item_image)
+    ImageView bookImageView;
+
+    @Bind(R.id.item_fab)
+    FloatingActionButton fab;
 
     int position;
 
@@ -48,7 +64,8 @@ public class BookItemFragment extends Fragment{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
+
 
         textView.setText(""+position);
     }
