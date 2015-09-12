@@ -12,10 +12,13 @@ import com.katana.quikread.R;
 import com.katana.quikread.common.BaseActivity;
 import com.katana.quikread.components.AppComponent;
 import com.katana.quikread.models.QuikrItem;
+import com.katana.quikread.models.QuikreadItem;
 import com.katana.quikread.rest.OnRequestFinishedListener;
 import com.katana.quikread.rest.RestDataSource;
 import com.katana.quikread.rest.models.BookSearchResponse;
 import com.katana.quikread.rest.models.BooksByLocationResponse;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -47,8 +50,9 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
     @Inject
     RestDataSource restDataSource;
 
-    int plusCount = 0;
-    int negativeCount = 0;
+    ArrayList<QuikreadItem> quikreadItemArrayList = new ArrayList<>();
+
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +109,9 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
         if(response instanceof BooksByLocationResponse){
             Log.i(TAG, String.valueOf(((BooksByLocationResponse)response).getTotal()));
 
-            BooksByLocationResponse booksByLocationResponse = (BooksByLocationResponse)response;
+            final BooksByLocationResponse booksByLocationResponse = (BooksByLocationResponse)response;
+
+            quikreadItemArrayList.clear();
 
             for(QuikrItem quikrItem : booksByLocationResponse.getQuikritems()){
 
@@ -113,18 +119,28 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
                     @Override
                     public void success(Object o, Response response) {
                         Log.i(TAG, ((BookSearchResponse) o).getBook().getTitle());
+
+                        QuikreadItem  quikreadItem = new QuikreadItem();
+                        quikreadItemArrayList.add(quikreadItem);
+                        count++;
+
+                        if(count == booksByLocationResponse.getQuikritems().size()){
+                            requestCompleted();
+                        }
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
                         Log.e(TAG, error.getLocalizedMessage());
+                        count++;
+
+                        if(count == booksByLocationResponse.getQuikritems().size()){
+                            requestCompleted();
+                        }
                     }
                 });
             }
-
         }
-
-
     }
 
     @Override
@@ -134,4 +150,9 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
         Log.e(TAG, error.getLocalizedMessage());
     }
 
+    public void requestCompleted(){
+        Log.v(TAG, "Request Completed");
+
+        //TODO : notifyDataSetChanged here
+    }
 }
