@@ -2,7 +2,6 @@ package com.katana.quikread.database;
 
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -11,22 +10,25 @@ import com.katana.quikread.models.QuikrItem;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DataBaseManager {
+import javax.inject.Inject;
+
+public class DatabaseManager {
 
     private SQLiteDatabase mDatabase;
-    private BooksDataBase mBooksDataBase;
+    private BooksDbHelper mBooksDbHelper;
     private String[] allColumns = null;
     private String tableName;
 
-    public DataBaseManager(Context context,BooksDataBase dataBase){
-        mBooksDataBase = dataBase;
-        tableName = mBooksDataBase.getTableName();
-        allColumns = mBooksDataBase.getTableColumns();
+    @Inject
+    public DatabaseManager(BooksDbHelper dataBase){
+        mBooksDbHelper = dataBase;
+        tableName = mBooksDbHelper.getTableName();
+        allColumns = mBooksDbHelper.getTableColumns();
     }
 
     public void open() {
 
-        mDatabase = mBooksDataBase.getWritableDatabase();
+        mDatabase = mBooksDbHelper.getWritableDatabase();
     }
 
     public void addBookItem(QuikrItem model){
@@ -107,7 +109,7 @@ public class DataBaseManager {
     */
 
     public void close() {
-        mBooksDataBase.close();
+        mBooksDbHelper.close();
     }
 
 
