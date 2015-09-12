@@ -15,8 +15,15 @@ public class BookSearchResponse {
     @Element(name = "Request")
     Request request;
 
+    @Element(name = "book")
+    Book book;
+
     public Request getRequest() {
         return request;
+    }
+
+    public Book getBook() {
+        return book;
     }
 
     @Root
@@ -43,32 +50,50 @@ public class BookSearchResponse {
         }
     }
 
-    @Root
+    @Root(strict = false)
     public static class Book {
 
-        @Element(name = "id")
+        @Element(name = "id", required = false)
         String id;
 
-        @Element(name = "title")
+        @Element(name = "title", required = false)
         String title;
 
-        @Element(name = "isbn")
+        @Element(name = "isbn", required = false)
         String isbn;
 
-        @Element(name = "isbn13")
-        String isbn13;
-
-        @Element(name = "asin")
-        String asin;
-
-        @Element(name = "image_url")
+        @Element(name = "image_url", required = false)
         String imageUrl;
 
-        @Element(name = "small_image_url")
+        @Element(name = "small_image_url", required = false)
         String smallImageUrl;
 
-        @Element(name = "description")
+        @Element(name = "description", required = false)
         String description;
+
+        public String getId() {
+            return id;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getIsbn() {
+            return isbn;
+        }
+
+        public String getImageUrl() {
+            return imageUrl;
+        }
+
+        public String getSmallImageUrl() {
+            return smallImageUrl;
+        }
+
+        public String getDescription() {
+            return description;
+        }
     }
 }
 

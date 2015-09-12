@@ -39,4 +39,7 @@ public class BooksByLocationResponse {
         return responseCode;
     }
 
+    public List<QuikrItem> getQuikritems() {
+        return quikritems;
+    }
 }
