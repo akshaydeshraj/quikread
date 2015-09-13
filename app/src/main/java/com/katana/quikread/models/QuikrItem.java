@@ -38,6 +38,7 @@ public class QuikrItem {
 
     private String url;
 
+    //@SerializedName("geo_pin")
     private String geoPin; //TODO : maybe show on map
 
     public int getPrimaryKey() {

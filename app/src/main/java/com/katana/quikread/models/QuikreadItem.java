@@ -32,17 +32,23 @@ public class QuikreadItem implements Serializable {
 
     private String cityName;
 
-    public QuikreadItem(String genre, String price, String title, String imageUrl, String description,
-                        String author, String rating, String isbn,String cityName) {
-        this.genre = genre;
-        this.price = price;
-        this.title = title;
-        this.imageUrl = imageUrl;
-        this.description = description;
+    private String geoPin;
+
+    private String quickrContent;
+
+    public QuikreadItem(String author, String cityName, String description, String genre, String geoPin,
+                        String imageUrl, String isbn, String price, String rating, String title,String quickrContent) {
         this.author = author;
-        this.rating = rating;
-        this.isbn = isbn;
         this.cityName = cityName;
+        this.description = description;
+        this.genre = genre;
+        this.geoPin = geoPin;
+        this.imageUrl = imageUrl;
+        this.isbn = isbn;
+        this.price = price;
+        this.rating = rating;
+        this.title = title;
+        this.quickrContent = quickrContent;
     }
 
     public String getGenre() {
@@ -79,5 +85,13 @@ public class QuikreadItem implements Serializable {
 
     public String getCityName() {
         return cityName;
+    }
+
+    public String getGeoPin() {
+        return geoPin;
+    }
+
+    public String getQuickrContent() {
+        return quickrContent;
     }
 }

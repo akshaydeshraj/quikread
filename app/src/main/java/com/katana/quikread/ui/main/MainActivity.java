@@ -168,15 +168,17 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
                         }
 
                         QuikreadItem  quikreadItem = new QuikreadItem(
-                                genre,
-                                quikrItem.getPrice(),
-                                bookSearchResponse.getBook().getTitle(),
-                                bookSearchResponse.getBook().getImageUrl(),
-                                bookSearchResponse.getBook().getDescription(),
                                 bookSearchResponse.getBook().getAuthors().getAuthor().getName(),
-                                bookSearchResponse.getBook().getAverageRating(),
+                                quikrItem.getCityName(),
+                                bookSearchResponse.getBook().getDescription(),
+                                genre,
+                                quikrItem.getGeoPin(),
+                                bookSearchResponse.getBook().getImageUrl(),
                                 bookSearchResponse.getBook().getIsbn(),
-                                quikrItem.getCityName()
+                                quikrItem.getPrice(),
+                                bookSearchResponse.getBook().getAverageRating(),
+                                bookSearchResponse.getBook().getTitle(),
+                                quikrItem.getContent()
                         );
                         quikreadItemArrayList.add(quikreadItem);
                         count++;
