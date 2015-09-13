@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.katana.quikread.R;
@@ -32,6 +33,9 @@ public class BookItemFragment extends Fragment{
 
     @Bind(R.id.item_image)
     ImageView bookImageView;
+
+    @Bind(R.id.book_rating)
+    RatingBar ratingBar;
 
     @Bind(R.id.book_title)
     TextView bookTitle;
@@ -78,6 +82,8 @@ public class BookItemFragment extends Fragment{
         ButterKnife.bind(this, view);
 
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+        ratingBar.setRating(Float.parseFloat(quikreadItem.getRating()));
         bookTitle.setText(quikreadItem.getTitle());
         bookGenre.setText(quikreadItem.getGenre());
         bookAuthor.setText(quikreadItem.getAuthor());
