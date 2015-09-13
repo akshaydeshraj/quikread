@@ -91,6 +91,6 @@ public class BookItemFragment extends Fragment{
         bookAuthor.setText(quikreadItem.getAuthor());
         bookDescription.setText(quikreadItem.getDescription());
 
-        Picasso.with(getActivity()).load(Uri.parse(quikreadItem.getImageUrl())).centerCrop().into(bookImageView);
+        Picasso.with(getActivity()).load(Uri.parse(quikreadItem.getImageUrl())).fit().centerCrop().into(bookImageView);
     }
 }
