@@ -13,9 +13,15 @@ def buildTime = date.format("dd.MM.yy", TimeZone.getTimeZone("IST"))
 buildscript {
     repositories {
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
     dependencies {
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+    }
+}
+repositories {
+    maven {
+        url "https://jitpack.io"
     }
 }
 
@@ -90,6 +96,8 @@ dependencies {
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'xpp3', module: 'xpp3'
     }
+    compile 'com.google.android.gms:play-services-maps:7.8.0'
+    compile 'com.github.polok:RouteDrawer:94174c22b0@aar'
 }
 
 // print build finish time
