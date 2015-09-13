@@ -1,10 +1,13 @@
 package com.katana.quikread.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.katana.quikread.ActivityScope;
 import com.katana.quikread.R;
@@ -44,6 +47,9 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
     @Bind(R.id.main_viewpager)
     ViewPager viewPager;
 
+    @Bind(R.id.main_fab)
+    FloatingActionButton fab;
+
     @Inject
     RestDataSource restDataSource;
 
@@ -51,6 +57,7 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
     ArrayList<QuikreadItem> quikreadItemArrayList = new ArrayList<>();
 
     private int count = 0;
+    private int currentFragmentPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,32 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         viewPager.setPageTransformer(false, new DepthPageTransformer());
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentFragmentPosition = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,BookDetailsActivity.class);
+                intent.putExtra("quickread",quikreadItemArrayList.get(currentFragmentPosition));
+                startActivity(intent);
+            }
+        });
 
         restDataSource.fetchBooksByLocation("Delhi"); //TODO: remove hardcoded location
 
