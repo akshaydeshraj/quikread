@@ -24,14 +24,12 @@
                 android:id="@+id/book_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hardy Boys"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
             <TextView
                 android:id="@+id/book_genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="lorem_ipsum"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp" />
 
@@ -39,7 +37,6 @@
                 android:id="@+id/book_author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Franklin Dixon"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp" />
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +24,6 @@ import butterknife.ButterKnife;
  */
 public class BookItemFragment extends Fragment{
 
-    @Bind(R.id.textView)
-    TextView textView;
-
     @Bind(R.id.item_collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
@@ -34,6 +32,18 @@ public class BookItemFragment extends Fragment{
 
     @Bind(R.id.item_image)
     ImageView bookImageView;
+
+    @Bind(R.id.book_title)
+    TextView bookTitle;
+
+    @Bind(R.id.book_genre)
+    TextView bookGenre;
+
+    @Bind(R.id.book_author)
+    TextView bookAuthor;
+
+    @Bind(R.id.book_description)
+    TextView bookDescription;
 
     QuikreadItem quikreadItem;
 
@@ -58,15 +68,19 @@ public class BookItemFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.book_item_fragment, container, false);
-
-        ButterKnife.bind(this, rootView);
-
-        return rootView;
+       return inflater.inflate(R.layout.book_item_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ButterKnife.bind(this, view);
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        bookTitle.setText(quikreadItem.getTitle());
+        bookGenre.setText(quikreadItem.getGenre());
+        bookAuthor.setText(quikreadItem.getAuthor());
+        bookDescription.setText(quikreadItem.getDescription());
     }
 }
