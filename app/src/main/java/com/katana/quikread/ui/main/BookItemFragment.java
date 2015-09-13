@@ -1,6 +1,5 @@
 package com.katana.quikread.ui.main;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -91,6 +90,6 @@ public class BookItemFragment extends Fragment{
         bookAuthor.setText(quikreadItem.getAuthor());
         bookDescription.setText(quikreadItem.getDescription());
 
-        Picasso.with(getActivity()).load(Uri.parse(quikreadItem.getImageUrl())).centerCrop().into(bookImageView);
+        Picasso.with(getActivity()).load(quikreadItem.getImageUrl()).fit().centerCrop().into(bookImageView);
     }
 }
