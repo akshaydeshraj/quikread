@@ -218,5 +218,6 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
 
         //TODO : notifyDataSetChanged here
         viewPager.setAdapter(viewPagerAdapter);
+        fab.setVisibility(View.VISIBLE);
     }
 }
