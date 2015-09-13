@@ -1,12 +1,13 @@
 package com.katana.quikread.ui.main;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.katana.quikread.R;
 import com.katana.quikread.models.QuikreadItem;
+import com.katana.quikread.rest.Keys;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -50,6 +52,9 @@ public class BookItemFragment extends Fragment{
 
     @Bind(R.id.book_description)
     TextView bookDescription;
+
+    @Bind(R.id.descriptionCard)
+    CardView descriptionCard;
 
     QuikreadItem quikreadItem;
 
@@ -89,8 +94,15 @@ public class BookItemFragment extends Fragment{
         bookTitle.setText(quikreadItem.getTitle());
         bookGenre.setText(quikreadItem.getGenre());
         bookAuthor.setText(quikreadItem.getAuthor());
-        bookDescription.setText(quikreadItem.getDescription());
+        try{
+            bookDescription.setText(Html.fromHtml(quikreadItem.getDescription()));
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            descriptionCard.setVisibility(View.GONE);
+        }
 
-        Picasso.with(getActivity()).load(Uri.parse(quikreadItem.getImageUrl())).fit().centerCrop().into(bookImageView);
+        Picasso.with(getActivity()).load("http://www.librarything.com/devkey/" +
+                Keys.LIBRARYTHING_API_KEY+"/large/isbn/"+quikreadItem.getIsbn())
+                .fit().centerCrop().into(bookImageView);
     }
 }

@@ -14,4 +14,7 @@ public class SampleKeys {
 
     //Goodreads
     public static final String GOODREADS_API_KEY = "";
+
+    //LibraryThing
+    public static final String LIBRARYTHING_API_KEY = "";
 }
