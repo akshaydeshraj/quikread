@@ -3,6 +3,7 @@ package com.katana.quikread.ui.main;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class BookDetailsActivity extends AppCompatActivity {
     @Bind(R.id.details_content)
     TextView content;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,8 @@ public class BookDetailsActivity extends AppCompatActivity {
         city.setText(quikreadItem.getCityName());
 
         content.setText(""+quikreadItem.getQuickrContent());
+
+
 
     }
 
