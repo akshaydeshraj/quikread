@@ -6,8 +6,13 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
+import com.katana.quikread.R;
 import com.katana.quikread.models.QuikreadItem;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * @author DEEPANKAR
@@ -15,11 +20,23 @@ import com.katana.quikread.models.QuikreadItem;
  */
 public class BookDetailsActivity extends AppCompatActivity {
 
+    @Bind(R.id.details_city_name)
+    TextView city;
+
+    @Bind(R.id.details_locality)
+    TextView locality;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_quickr_details);
+
+        ButterKnife.bind(this);
+
         QuikreadItem quikreadItem = (QuikreadItem)getIntent().getSerializableExtra("quickread");
-        
+
+        city.setText(quikreadItem.getCityName());
+
     }
 
     private void call(String number) {

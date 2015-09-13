@@ -30,7 +30,10 @@ public class QuikreadItem implements Serializable {
 
     private String isbn;
 
-    public QuikreadItem(String genre, String price, String title, String imageUrl, String description, String author, String rating, String isbn) {
+    private String cityName;
+
+    public QuikreadItem(String genre, String price, String title, String imageUrl, String description,
+                        String author, String rating, String isbn,String cityName) {
         this.genre = genre;
         this.price = price;
         this.title = title;
@@ -39,6 +42,7 @@ public class QuikreadItem implements Serializable {
         this.author = author;
         this.rating = rating;
         this.isbn = isbn;
+        this.cityName = cityName;
     }
 
     public String getGenre() {
@@ -71,5 +75,9 @@ public class QuikreadItem implements Serializable {
 
     public String getIsbn() {
         return isbn;
+    }
+
+    public String getCityName() {
+        return cityName;
     }
 }

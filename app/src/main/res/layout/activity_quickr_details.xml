@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/main_viewpager"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/item_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="250dp" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Civil Lines"/>
+        android:textSize="16sp"
+        android:id="@+id/details_city_name"
+        android:layout_margin="16dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Civil Lines"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Civil Lines"/>
+        android:textSize="16sp"
+        android:text="Civil Lines"
+        android:id="@+id/details_locality"
+        android:layout_margin="16dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Call"/>
+        android:text="Call"
+        android:id="@+id/details_call_btn"
+        android:layout_margin="16dp"/>
 
-    <EditText
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Mobile Number"/>
+        android:layout_margin="16dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Mobile Number"
+            android:id="@+id/details_reply" />
+
+    </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>
