@@ -1,5 +1,6 @@
 package com.katana.quikread.ui.main;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.katana.quikread.R;
 import com.katana.quikread.models.QuikreadItem;
+import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -88,5 +90,7 @@ public class BookItemFragment extends Fragment{
         bookGenre.setText(quikreadItem.getGenre());
         bookAuthor.setText(quikreadItem.getAuthor());
         bookDescription.setText(quikreadItem.getDescription());
+
+        Picasso.with(getActivity()).load(Uri.parse(quikreadItem.getImageUrl())).centerCrop().into(bookImageView);
     }
 }
