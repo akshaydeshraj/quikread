@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @version 1.0.0
  * @since 13-Sep-15
  */
-public class QuikreadItem implements Serializable{
+public class QuikreadItem implements Serializable {
 
     //Quikr params
     private String genre;
@@ -28,7 +28,9 @@ public class QuikreadItem implements Serializable{
 
     private String rating;
 
-    public QuikreadItem(String genre, String price, String title, String imageUrl, String description, String author, String rating) {
+    private String isbn;
+
+    public QuikreadItem(String genre, String price, String title, String imageUrl, String description, String author, String rating, String isbn) {
         this.genre = genre;
         this.price = price;
         this.title = title;
@@ -36,6 +38,7 @@ public class QuikreadItem implements Serializable{
         this.description = description;
         this.author = author;
         this.rating = rating;
+        this.isbn = isbn;
     }
 
     public String getGenre() {
@@ -64,5 +67,9 @@ public class QuikreadItem implements Serializable{
 
     public String getRating() {
         return rating;
+    }
+
+    public String getIsbn() {
+        return isbn;
     }
 }

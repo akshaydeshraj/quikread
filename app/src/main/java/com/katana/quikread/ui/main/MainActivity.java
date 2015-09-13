@@ -141,7 +141,8 @@ public class MainActivity extends BaseActivity implements OnRequestFinishedListe
                                 bookSearchResponse.getBook().getImageUrl(),
                                 bookSearchResponse.getBook().getDescription(),
                                 bookSearchResponse.getBook().getAuthors().getAuthor().getName(),
-                                bookSearchResponse.getBook().getAverageRating()
+                                bookSearchResponse.getBook().getAverageRating(),
+                                bookSearchResponse.getBook().getIsbn()
                         );
                         quikreadItemArrayList.add(quikreadItem);
                         count++;
