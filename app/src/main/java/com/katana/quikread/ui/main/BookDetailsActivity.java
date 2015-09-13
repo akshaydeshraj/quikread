@@ -24,6 +24,9 @@ public class BookDetailsActivity extends AppCompatActivity {
     @Bind(R.id.details_locality)
     TextView locality;
 
+    @Bind(R.id.details_content)
+    TextView content;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +38,7 @@ public class BookDetailsActivity extends AppCompatActivity {
 
         city.setText(quikreadItem.getCityName());
 
-        locality.setText(""+quikreadItem.getQuickrContent());
+        content.setText(""+quikreadItem.getQuickrContent());
 
     }
 
