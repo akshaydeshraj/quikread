@@ -61,17 +61,13 @@
             android:textSize="16sp"
             android:padding="16dp"
             android:text="jsdcnjsdnckjd sckds ncjdsncjd"
-            android:id="@+id/details_content" />
+            android:id="@+id/details_content"
+            />
 
 
     </android.support.v7.widget.CardView>
 
-    <fragment
-        android:name="com.katana.quikread.ui.main.MapFragment"
-        android:id="@+id/details_map_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="16dp" />
+
 
     <Button
         android:layout_width="wrap_content"

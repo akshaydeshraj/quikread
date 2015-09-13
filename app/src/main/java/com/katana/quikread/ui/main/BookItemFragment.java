@@ -56,6 +56,9 @@ public class BookItemFragment extends Fragment{
     @Bind(R.id.descriptionCard)
     CardView descriptionCard;
 
+    @Bind(R.id.item_price)
+    TextView price;
+
     QuikreadItem quikreadItem;
 
     public static Fragment newInstance(QuikreadItem quikreadItem){
@@ -91,6 +94,7 @@ public class BookItemFragment extends Fragment{
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         ratingBar.setRating(Float.parseFloat(quikreadItem.getRating()));
+        price.setText("Rs. "+ quikreadItem.getPrice());
         bookTitle.setText(quikreadItem.getTitle());
         bookGenre.setText(quikreadItem.getGenre());
         bookAuthor.setText(quikreadItem.getAuthor());

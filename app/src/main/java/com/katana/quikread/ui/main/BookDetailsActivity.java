@@ -3,7 +3,6 @@ package com.katana.quikread.ui.main;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -12,6 +11,7 @@ import com.katana.quikread.models.QuikreadItem;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
 
 /**
  * @author DEEPANKAR
@@ -28,6 +28,7 @@ public class BookDetailsActivity extends AppCompatActivity {
     @Bind(R.id.details_content)
     TextView content;
 
+   // private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,37 @@ public class BookDetailsActivity extends AppCompatActivity {
 
         city.setText(quikreadItem.getCityName());
 
-        content.setText(""+quikreadItem.getQuickrContent());
+        content.setText("" + quikreadItem.getQuickrContent());
+/*
+        googleMap = ((com.google.android.gms.maps.MapFragment)getFragmentManager().
+                findFragmentById(R.id.details_map_fragment)).getMap();
 
+        final RouteDrawer routeDrawer = new RouteDrawer.RouteDrawerBuilder(googleMap)
+                .withColor(Color.BLUE)
+                .withWidth(8)
+                .withAlpha(0.5f)
+                .withMarkerIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                .build();
 
+        RouteRest routeRest = new RouteRest();
+
+        routeRest.getJsonDirections(new LatLng(50.126922, 19.015261), new LatLng(50.200206, 19.175603),
+                TravelMode.DRIVING)
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new Func1<String, Routes>() {
+                    @Override
+                    public Routes call(String s) {
+                        return new RouteJsonParser<Routes>().parse(s, Routes.class);
+                    }
+                })
+                .subscribe(new Action1<Routes>() {
+                    @Override
+                    public void call(Routes r) {
+                        routeDrawer.drawPath(r);
+                    }
+                });
+
+*/
 
     }
 
