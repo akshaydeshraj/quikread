@@ -3,6 +3,11 @@ package com.katana.quikread.ui.main;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.katana.quikread.R;
 
 
 import com.github.polok.routedrawer.RouteDrawer;
@@ -13,13 +18,14 @@ import com.github.polok.routedrawer.parser.RouteJsonParser;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.katana.quikread.R;
+
 
 /**
  * @author DEEPANKAR
  * @since 13-09-2015.
  */
 public class MapFragment extends Fragment{
+
 
     private GoogleMap googleMap;
 
@@ -29,7 +35,7 @@ public class MapFragment extends Fragment{
 
         setContentView(R.layout.map_fragment);
 
-        googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.location_map)).getMap();
 
         final RouteDrawer routeDrawer = new RouteDrawer.RouteDrawerBuilder(googleMap)
                 .withColor(Color.BLUE)
@@ -55,6 +61,12 @@ public class MapFragment extends Fragment{
                     }
                 });
 
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.map_fragment, container, false);
     }
 
 }
