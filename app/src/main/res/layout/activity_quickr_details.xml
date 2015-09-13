@@ -70,12 +70,10 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:name="com.katana.quikread.ui.main.MapFragment"
         android:layout_marginTop="16dp"
-        tools:layout="@layout/map_fragment"
-        android:id="@+id/location_map"
-        class="com.google.android.gms.maps.MapFragment"
-        />
+        android:id="@+id/details_map"
+        class="com.google.android.gms.maps.MapFragment" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
